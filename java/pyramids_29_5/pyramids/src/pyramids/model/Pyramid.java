@@ -170,4 +170,13 @@ public class Pyramid {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+        return "Pyramid{" +
+                "pharaoh='" + pharaoh + '\'' +
+                ", ancient_name='" + ancient_name + '\'' +
+                ", modern_name='" + modern_name + '\'' +
+                '}';
+    }
 }
