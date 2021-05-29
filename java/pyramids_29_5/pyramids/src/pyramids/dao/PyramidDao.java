@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class PyramidDao implements ObjectDao {
 
     @Override
-    public List<Pyramid> loadPyramidFromCSV(String path, boolean hasHeader) {
+    public List<Pyramid> loadObjectsFromCSV(String path, boolean hasHeader) {
         File file = new File(path);
         List<Pyramid> pyramids = new ArrayList<>();
         Scanner scanner = null;
