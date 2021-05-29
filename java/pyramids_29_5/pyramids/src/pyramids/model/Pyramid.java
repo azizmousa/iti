@@ -22,6 +22,27 @@ public class Pyramid {
 
     public Pyramid(){}
 
+    public Pyramid(String pharaoh, String ancient_name, String modern_name, String site, String type, String lepsius,
+                   String material, String comment, int dynasty, double base1, double base2, double height,
+                   double slope, double volume, double latitude, double longitude) {
+        this.pharaoh = pharaoh;
+        this.ancient_name = ancient_name;
+        this.modern_name = modern_name;
+        this.site = site;
+        this.type = type;
+        this.lepsius = lepsius;
+        this.material = material;
+        this.comment = comment;
+        this.dynasty = dynasty;
+        this.base1 = base1;
+        this.base2 = base2;
+        this.height = height;
+        this.slope = slope;
+        this.volume = volume;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public String getPharaoh() {
         return pharaoh;
     }
