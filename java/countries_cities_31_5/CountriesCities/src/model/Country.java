@@ -34,4 +34,13 @@ public class Country {
     public void setContinent(String continent) {
         this.continent = continent;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", continent='" + continent + '\'' +
+                '}';
+    }
 }
