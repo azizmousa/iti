@@ -17,7 +17,9 @@ public class CountriesDAO implements ObjectDAO{
         Scanner scanner = null;
         try{
             scanner = new Scanner(file);
-            scanner.nextLine();
+            if(hasHeader)
+                scanner.nextLine();
+
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String [] features = line.split(",");
