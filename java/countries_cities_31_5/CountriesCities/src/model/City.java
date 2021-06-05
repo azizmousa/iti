@@ -1,11 +1,14 @@
 package model;
 
+import compare.Compare;
+
 public class City {
     private int country_id;
     private int city_id;
     private String name;
     private boolean capital;
     private long population;
+    private Compare<City, City> greaterCompare;
 
     public City(int country_id, int city_id, String name, boolean capital, long population) {
         this.country_id = country_id;
@@ -13,6 +16,7 @@ public class City {
         this.name = name;
         this.capital = capital;
         this.population = population;
+        greaterCompare = (c1, c2) -> c1.getPopulation() > c2.getPopulation();
     }
 
     public int getCountry_id() {
@@ -65,4 +69,9 @@ public class City {
                 ", population=" + population +
                 '}';
     }
+
+    public boolean greaterThan(City city){
+        return greaterCompare.compare(this, city);
+    }
+
 }
