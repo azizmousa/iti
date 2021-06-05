@@ -19,6 +19,9 @@ public class Runner {
 
         double base1Median = getBase1Median(pyramids);
         System.out.println("Base 1 Median = " + base1Median);
+
+        double base1LowerQuartile = getBase1LowerQuartile(pyramids);
+        System.out.println("Base 1 Lower Quartile = " + base1LowerQuartile);
     }
 
     public static double getBase1Average(List<Pyramid> pyramids){
@@ -35,11 +38,21 @@ public class Runner {
     public static double getBase1Median(List<Pyramid> pyramids){
         if(pyramids == null || pyramids.size() ==0)
             return 0;
-        List<Double> base1List = pyramids
+        return getMedian(getBase1SortedList(pyramids));
+    }
+
+    public static double getBase1LowerQuartile(List<Pyramid> pyramids){
+        if(pyramids == null || pyramids.size() == 0)
+            return 0;
+        List<Double> sortedBase1 = getBase1SortedList(pyramids);
+        return getMedian(sortedBase1.stream().limit(sortedBase1.size()/2).collect(Collectors.toList()));
+    }
+
+    public static List<Double> getBase1SortedList(List<Pyramid> pyramids){
+          return pyramids
                 .stream()
                 .map(Pyramid::getBase1)
                 .sorted().collect(Collectors.toList());
-        return getMedian(base1List);
     }
 
     public static double getMedian(List<Double> list){
