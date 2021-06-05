@@ -28,6 +28,10 @@ public class Runner {
         for(City c : getMaxPopulationCities(country_city_map))
             System.out.println(c);
 
+        String continent = "africa";
+        System.out.println("Max Population City In " + continent + ":");
+        System.out.println( getMaxPopulationCityByContinent(countries, country_city_map, continent));
+
 
 
     }
@@ -42,6 +46,22 @@ public class Runner {
                     maxPopCities.add(maxCity);
                 });
         return maxPopCities;
+    }
+
+    public static City getMaxPopulationCityByContinent(List<Country> countries,
+                                                       Map<Integer, List<City>> countries_cities_map, String continent){
+        List<Country> continentCountries = countries
+                .stream().filter(country1 -> country1.getContinent()
+                        .toLowerCase(Locale.ROOT).equals(continent.toLowerCase(Locale.ROOT)))
+                .collect(Collectors.toList());
+
+        return countries_cities_map.values()
+                .stream()
+                .flatMap(List::stream)
+                .filter(city ->
+                    continentCountries.stream().anyMatch(country -> country.getId() == city.getCountry_id())
+
+                ).max(Comparator.comparing(City::getPopulation)).orElseThrow(NoSuchElementException::new);
     }
 
 }
