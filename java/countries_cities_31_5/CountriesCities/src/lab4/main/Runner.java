@@ -12,12 +12,20 @@ public class Runner {
         String filePath = "pyramids.csv";
         PyramidDao pyramidDao = new PyramidDao();
         List<Pyramid> pyramids = pyramidDao.loadObjectsFromCSV(filePath, true);
-        for(Pyramid p : pyramids){
-            System.out.println(p);
-        }
-        System.out.println("Number of pyramids = " + pyramids.size());
+        double base1Average = getBase1Average(pyramids);
+        System.out.println("Base 1 Average = " + base1Average);
     }
 
+    public static double getBase1Average(List<Pyramid> pyramids){
+        if(pyramids == null || pyramids.size() == 0)
+            return 0;
+
+        double sum = pyramids
+                .stream()
+                .mapToDouble(Pyramid::getBase1)
+                .sum();
+        return sum / pyramids.size();
+    }
 
 
 }
