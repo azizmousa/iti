@@ -32,7 +32,7 @@ public class Runner {
         }catch (NoSuchElementException e){
             System.err.println("Max Population City In each Country: No Cities Found.!!!");
         }
-        String continent = "South Americaa";
+        String continent = "South America";
         try {
             City city = getMaxPopulationCityByContinent(countries, country_city_map, continent);
             System.out.print("Max Population City In " + continent + ": ");
