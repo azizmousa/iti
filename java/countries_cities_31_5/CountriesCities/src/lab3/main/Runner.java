@@ -24,16 +24,30 @@ public class Runner {
             country_city_map.get(c.getCountry_id()).add(c);
         }
 
-        System.out.println("Max Population City In each Country:");
-        for(City c : getMaxPopulationCities(country_city_map))
-            System.out.println(c);
+        try {
+            List<City> cs = getMaxPopulationCities(country_city_map);
+            System.out.println("Max Population City In each Country:");
+            for (City c : cs)
+                System.out.println(c);
+        }catch (NoSuchElementException e){
+            System.err.println("Max Population City In each Country: No Cities Found.!!!");
+        }
+        String continent = "South Americaa";
+        try {
+            City city = getMaxPopulationCityByContinent(countries, country_city_map, continent);
+            System.out.print("Max Population City In " + continent + ": ");
+            System.out.println(city);
+        }catch (NoSuchElementException e){
+            System.err.println("Max Population City In " + continent + ": No Cities Found.!!!");
+        }
 
-        String continent = "africa";
-        System.out.println("Max Population City In " + continent + ":");
-        System.out.println( getMaxPopulationCityByContinent(countries, country_city_map, continent));
-
-
-
+        try{
+            City city = getMaxPopulationCapital(country_city_map);
+            System.out.print("Max Population Capital: ");
+            System.out.println(city);
+        }catch (NoSuchElementException e){
+            System.err.println("Max Population Capital: No Cities Found.!!!");
+        }
     }
 
     public static List<City> getMaxPopulationCities(Map<Integer, List<City>> countries_cities_map){
@@ -62,6 +76,15 @@ public class Runner {
                     continentCountries.stream().anyMatch(country -> country.getId() == city.getCountry_id())
 
                 ).max(Comparator.comparing(City::getPopulation)).orElseThrow(NoSuchElementException::new);
+    }
+
+    public static City getMaxPopulationCapital(Map<Integer, List<City>> countries_cities_map){
+       return countries_cities_map.values()
+               .stream()
+               .flatMap(List::stream)
+               .filter(City::isCapital)
+               .max(Comparator.comparing(City::getPopulation))
+               .orElseThrow(NoSuchElementException::new);
     }
 
 }
