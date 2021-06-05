@@ -39,12 +39,15 @@ public class Runner {
                 .stream()
                 .map(Pyramid::getBase1)
                 .sorted().collect(Collectors.toList());
-        int length = base1List.size();
-
-        if(length % 2 == 0)
-            return (base1List.get(length / 2) + base1List.get((length / 2) + 1))/2;
-        return base1List.get(length/2);
+        return getMedian(base1List);
     }
 
+    public static double getMedian(List<Double> list){
+        int length = list.size();
+
+        if(length % 2 == 0)
+            return (list.get(length / 2) + list.get((length / 2) + 1))/2;
+        return list.get(length/2);
+    }
 
 }
