@@ -1,9 +1,9 @@
-package main;
+package lab1.main;
 
-import dao.CitiesDAO;
-import dao.CountriesDAO;
-import model.City;
-import model.Country;
+import lab1.dao.CitiesDAO;
+import lab1.dao.CountriesDAO;
+import lab1.model.City;
+import lab1.model.Country;
 
 import java.util.*;
 

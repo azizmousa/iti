@@ -1,6 +1,6 @@
-package model;
+package lab1.model;
 
-import compare.Compare;
+import lab1.compare.Compare;
 
 public class City {
     private int country_id;

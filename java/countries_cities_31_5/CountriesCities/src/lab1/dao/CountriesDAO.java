@@ -1,6 +1,6 @@
-package dao;
+package lab1.dao;
 
-import model.Country;
+import lab1.model.Country;
 
 import java.io.File;
 import java.io.FileNotFoundException;

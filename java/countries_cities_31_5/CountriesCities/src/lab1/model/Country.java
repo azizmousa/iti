@@ -1,4 +1,4 @@
-package model;
+package lab1.model;
 
 public class Country {
     private String name;

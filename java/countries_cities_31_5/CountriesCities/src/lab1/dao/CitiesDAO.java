@@ -1,6 +1,6 @@
-package dao;
+package lab1.dao;
 
-import model.City;
+import lab1.model.City;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
