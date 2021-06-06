@@ -41,6 +41,17 @@ public class Runner {
             System.err.println("Max Population City In " + continent + ": No Cities Found.!!!");
         }
 
+        try {
+            Map<String, City> maxPerContinent = getMaxPopulationCitiesInContinents(countries, country_city_map);
+//            System.out.print("Max Population City In " + continent + ": ");
+            maxPerContinent.forEach( (k, v) -> System.out.println("Max Population City in "
+                    + k + " Continent is " + v.getName())
+            );
+//            System.out.println(city);
+        }catch (NoSuchElementException e){
+            System.err.println("Max Population City In " + continent + ": No Cities Found.!!!");
+        }
+
         try{
             City city = getMaxPopulationCapital(country_city_map);
             System.out.print("Max Population Capital: ");
@@ -76,6 +87,19 @@ public class Runner {
                     continentCountries.stream().anyMatch(country -> country.getId() == city.getCountry_id())
 
                 ).max(Comparator.comparing(City::getPopulation)).orElseThrow(NoSuchElementException::new);
+    }
+
+    public static Map<String, City> getMaxPopulationCitiesInContinents(List<Country> countries,
+                                                       Map<Integer, List<City>> countries_cities_map){
+        Map<String, City> maxCityContinent = new HashMap<>();
+        Map<String, List<Country>> continents = countries
+                .stream()
+                .collect(Collectors.groupingBy(Country::getContinent));
+
+        continents.keySet().forEach(continent -> maxCityContinent.put(continent,
+                getMaxPopulationCityByContinent(countries, countries_cities_map, continent)));
+
+        return maxCityContinent;
     }
 
     public static City getMaxPopulationCapital(Map<Integer, List<City>> countries_cities_map){
