@@ -1,15 +1,13 @@
 package com.aziz.titanic.runner;
 
 import joinery.DataFrame;
+import org.apache.poi.ss.formula.functions.Column;
 import tech.tablesaw.api.IntColumn;
 import tech.tablesaw.api.StringColumn;
 import tech.tablesaw.api.Table;
-import tech.tablesaw.columns.Column;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Runner {
@@ -36,7 +34,8 @@ public class Runner {
             // Dataframe playground:
             List<String> sex = titanic.column("sex").asList().stream().distinct().map(Object::toString)
                     .collect(Collectors.toList());
-            System.out.println("Sex Values:");
+
+            // convert String sex column to gender integer column
             StringColumn gender = titanic.column("sex").asStringColumn();
             List<Integer> gender_int = new ArrayList<>();
             for(String s : gender){
@@ -46,13 +45,16 @@ public class Runner {
                     gender_int.add(1);
             }
 
-
-            // convert String sex column to gender integer column
+            // add mappedGender to titanic table
             IntColumn mappedGender = IntColumn.create("mappedGender", gender_int.toArray(
                     new Integer[0]));
             titanic.addColumns(mappedGender);
             System.out.println("add gender integer column");
             System.out.println(titanic.print());
+
+            //add mappedGender to DataFrame
+//            df = df.add("xx", gender_int);
+//            System.out.println(df.describe().toString());
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
