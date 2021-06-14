@@ -4,14 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.aziz</groupId>
     <artifactId>titanic</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>tech.tablesaw</groupId>
+            <artifactId>tablesaw-core</artifactId>
+            <version>0.38.2</version>
+        </dependency>
+        <dependency>
+            <groupId>sh.joinery</groupId>
+            <artifactId>joinery-dataframe</artifactId>
+            <version>1.10</version>
+        </dependency>
+    </dependencies>
 
 </project>
